@@ -7,6 +7,6 @@ namespace CardSim
 {
     class CardFactory
     {
-        public GenerateBasicDeck
+        public Card[] GenerateBasicDeck() { return new Card[0]; }
     }
 }

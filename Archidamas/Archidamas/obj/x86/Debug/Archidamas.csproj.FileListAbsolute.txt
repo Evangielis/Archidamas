@@ -1,0 +1,6 @@
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\Archidamas\Archidamas\bin\x86\Debug\Archidamas.exe
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\Archidamas\Archidamas\bin\x86\Debug\Archidamas.pdb
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\Archidamas\Archidamas\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\Archidamas\Archidamas\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\Archidamas\Archidamas\obj\x86\Debug\Archidamas.exe
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\Archidamas\Archidamas\obj\x86\Debug\Archidamas.pdb

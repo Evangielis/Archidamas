@@ -1,0 +1,6 @@
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\ActionRPG.exe
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\ActionRPG.pdb
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\obj\x86\Debug\ActionRPG.exe
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\obj\x86\Debug\ActionRPG.pdb

@@ -1,0 +1,6 @@
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\CardSim\CardSim\bin\x86\Debug\CardSim.exe
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\CardSim\CardSim\bin\x86\Debug\CardSim.pdb
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\CardSim\CardSim\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\CardSim\CardSim\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\CardSim\CardSim\obj\x86\Debug\CardSim.exe
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\CardSim\CardSim\obj\x86\Debug\CardSim.pdb
