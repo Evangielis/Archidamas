@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActorDraw.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
@@ -117,6 +118,10 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Archidamas\Archidamas\Archidamas.csproj">
+      <Project>{63DC39A6-2199-4834-AB54-93AEAEC7AF89}</Project>
+      <Name>Archidamas</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ActionRPGContent\ActionRPGContent.contentproj">
       <Name>ActionRPGContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

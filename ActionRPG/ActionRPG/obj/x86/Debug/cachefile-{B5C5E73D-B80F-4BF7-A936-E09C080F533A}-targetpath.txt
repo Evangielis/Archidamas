@@ -1,0 +1,2 @@
+Content\seamless_grass_green_lowres.xnb
+Content\knt1_fr1.xnb

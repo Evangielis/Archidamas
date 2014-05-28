@@ -18,11 +18,15 @@ namespace ActionRPG
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        WorldDraw worldDraw;
+        ActorDraw actorDraw;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            worldDraw = new WorldDraw();
+            actorDraw = new ActorDraw();
         }
 
         /// <summary>
@@ -36,6 +40,8 @@ namespace ActionRPG
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            actorDraw.Initialize();
+            worldDraw.Initialize();
         }
 
         /// <summary>
@@ -48,6 +54,8 @@ namespace ActionRPG
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            worldDraw.LoadContent(this.Content.Load<Texture2D>("seamless_grass_green_lowres"));
+            actorDraw.LoadContent(this.Content.Load<Texture2D>("knt1_fr1"));
         }
 
         /// <summary>
@@ -84,6 +92,10 @@ namespace ActionRPG
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            worldDraw.DrawWorldToBatch(spriteBatch);
+            actorDraw.DrawActorsToBatch(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
