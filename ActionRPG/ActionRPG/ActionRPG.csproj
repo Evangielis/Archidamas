@@ -107,11 +107,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActorDraw.cs" />
+    <Compile Include="ActorDrawComponent.cs" />
+    <Compile Include="AreaMapComponent.cs" />
+    <Compile Include="CameraComponent.cs" />
+    <Compile Include="MapObjects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="WorldDraw.cs" />
+    <Compile Include="WorldDrawComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

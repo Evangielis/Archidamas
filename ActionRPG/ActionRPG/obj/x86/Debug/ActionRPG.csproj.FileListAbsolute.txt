@@ -4,7 +4,8 @@ C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archi
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\obj\x86\Debug\ActionRPG.exe
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\obj\x86\Debug\ActionRPG.pdb
-C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\seamless_grass_green_lowres.xnb
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\knt1_fr1.xnb
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Archidamas.exe
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Archidamas.pdb
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\Grass.xnb
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\Mountain.xnb

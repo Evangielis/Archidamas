@@ -18,15 +18,19 @@ namespace ActionRPG
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        WorldDraw worldDraw;
-        ActorDraw actorDraw;
+        WorldDrawComponent worldDraw;
+        ActorDrawComponent actorDraw;
+        AreaMapComponent area;
+        CameraComponent camera;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            worldDraw = new WorldDraw();
-            actorDraw = new ActorDraw();
+            worldDraw = new WorldDrawComponent(this);
+            actorDraw = new ActorDrawComponent(this);
+            area = new AreaMapComponent(this);
+            camera = new CameraComponent(this);
         }
 
         /// <summary>
@@ -38,10 +42,7 @@ namespace ActionRPG
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
-            actorDraw.Initialize();
-            worldDraw.Initialize();
         }
 
         /// <summary>
@@ -53,9 +54,15 @@ namespace ActionRPG
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
             // TODO: use this.Content to load your game content here
-            worldDraw.LoadContent(this.Content.Load<Texture2D>("seamless_grass_green_lowres"));
-            actorDraw.LoadContent(this.Content.Load<Texture2D>("knt1_fr1"));
+            worldDraw.Batch = spriteBatch;
+            actorDraw.Batch = spriteBatch;
+
+            List<IMapFeature> objs = new List<IMapFeature>();
+            objs.Add(new EntryPoint(0, 0));
+            objs.Add(new Mountain(48, 48));
+            area.LoadMap(objs.ToArray());
         }
 
         /// <summary>
@@ -79,7 +86,6 @@ namespace ActionRPG
                 this.Exit();
 
             // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -92,12 +98,12 @@ namespace ActionRPG
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            worldDraw.DrawWorldToBatch(spriteBatch);
-            actorDraw.DrawActorsToBatch(spriteBatch);
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                null, null, null, null, null, camera.TranslationMatrix);
+            base.Draw(gameTime);
             spriteBatch.End();
 
-            base.Draw(gameTime);
+
         }
     }
 }
