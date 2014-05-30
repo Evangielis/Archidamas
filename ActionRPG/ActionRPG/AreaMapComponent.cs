@@ -9,12 +9,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ActionRPG
 {
-    enum EnumMapObjType
-    {
-        Empty,
-        Terrain,
-    };
-
     interface IMapService
     {
         Vector2 PlayerLoc { get; }
@@ -72,12 +66,19 @@ namespace ActionRPG
             _playerLoc = (this.CheckCollision(player)) ? _playerLoc : _proposedLoc;
         }
 
+        /// <summary>
+        /// Checks for collision with objects on the map
+        /// </summary>
+        /// <param name="collider">The object being checked</param>
+        /// <returns>True if a collision has occured with a non-passable object</returns>
         public bool CheckCollision(Rectangle collider)
         {
             foreach (IMapFeature f in _mapObjs)
             {
                 if (f.Area.Intersects(collider))
-                    return true;
+                {
+                    return (f.Passable) ? false : true;
+                }
             }
             return false;
         }
