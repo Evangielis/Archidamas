@@ -12,21 +12,47 @@ namespace ActionRPG
     interface IMapService
     {
         Vector2 PlayerLoc { get; }
-        IMapFeature GetObjAt(int x, int y);
-        IMapFeature[] GetBoundedSet(Rectangle bounds);
+        IMapTile GetFeatureAt(int x, int y);
+        IMapTile GetSurfaceAt(int x, int y);
+    }
+
+    class Grid
+    {
+        const int DEFAULT_SIZE = 32;
+
+        public Rectangle Selector { get; private set; }
+        private Vector2 _gridRef;
+        public Vector2 GridRef { get { return this._gridRef; } }
+        int Size { get; set; }
+
+        public Grid()
+        {
+            this.Selector = new Rectangle(0,0,32,32);
+            this._gridRef = new Vector2(0, 0);
+            this.Size = DEFAULT_SIZE;
+        }
+
+        public Rectangle SetGrid(int x, int y)
+        {
+            this.Selector.Offset(x, y);
+            this._gridRef.X = x*this.Size;
+            this._gridRef.Y = y*this.Size;
+            return this.Selector;
+        }
     }
 
     class AreaMapComponent : GameComponent, IMapService
     {
         const float MOVE_SPEED = 2.0F;
+        const int DEFAULT_SIZE = 100;
 
-        List<IMapFeature> _mapObjs;
         Vector2 _playerLoc;
-        Vector2 PlayerLoc 
-        {
-            get { return _playerLoc; }
-        }
+        Vector2 PlayerLoc { get { return _playerLoc; } }
         IKeyService KeyService { get; set; }
+
+        //Setup map grids
+        IMapTile[,] _surfaceGrid;
+        IMapTile[,] _featureGrid;
 
         public AreaMapComponent(Game game) : base(game)
         {
@@ -37,6 +63,20 @@ namespace ActionRPG
         public override void Initialize()
         {
             KeyService = (IKeyService)Game.Services.GetService(typeof(IKeyService));
+            this._featureGrid = new IMapTile[DEFAULT_SIZE, DEFAULT_SIZE];
+            this._surfaceGrid = new IMapTile[DEFAULT_SIZE, DEFAULT_SIZE];
+
+            //Initialize grids
+            for (int i = 0; i < DEFAULT_SIZE; i++)
+            {
+                for (int j = 0; j < DEFAULT_SIZE; j++)
+                {
+
+                    this._surfaceGrid[i,j] = new GrassTile(i, j);
+                    this._featureGrid[i, j] = new NullTile(i, j);
+                }
+            }
+
             base.Initialize();
         }
 
@@ -73,45 +113,36 @@ namespace ActionRPG
         /// <returns>True if a collision has occured with a non-passable object</returns>
         public bool CheckCollision(Rectangle collider)
         {
-            foreach (IMapFeature f in _mapObjs)
+            int x = collider.X/32;
+            int y = collider.Y/32;
+            return (_featureGrid[x, y].Impassable);
+        }
+
+        public void LoadMap(IMapTile[] objs)
+        {
+            foreach (IMapTile t in objs)
             {
-                if (f.Area.Intersects(collider))
+                switch (t.Name)
                 {
-                    return (f.Passable) ? false : true;
+                    case "Entry Point":
+                        this._playerLoc = new Vector2(t.Loc.X*32, t.Loc.Y*32);
+                        break;
+
+                    default:
+                        this._featureGrid[t.Loc.X, t.Loc.Y] = t;
+                        break;
                 }
-            }
-            return false;
+            }     
         }
-
-        public void LoadMap(IMapFeature[] objs)
-        {
-            this._mapObjs = new List<IMapFeature>(objs);
-
-            //Identify and process entry point
-            IMapFeature p = this._mapObjs.Find(s => s.Name == "EntryPoint");
-            this._playerLoc = p.Area.Location.ToVector2();
-            this._mapObjs.Remove(p);
-        }
-
-        //SERVICE IMPLEMENTATION
-        IMapFeature GetObjAt(int x, int y) 
-        {
-            return this._mapObjs.Find(s => s.Area.Contains(x,y));
-        }
-
-        IMapFeature[] GetBoundedSet(Rectangle bounds)
-        {
-            if (bounds != Rectangle.Empty)
-                return this._mapObjs.FindAll(s => s.Area.Intersects(bounds)).ToArray();
-            else
-                return this._mapObjs.ToArray();
-        }
-
 
         //IMap implementation
-        IMapFeature IMapService.GetObjAt(int x, int y)
+        IMapTile IMapService.GetFeatureAt(int x, int y)
         {
-            return this.GetObjAt(x, y);
+            return this._featureGrid[x, y];
+        }
+        IMapTile IMapService.GetSurfaceAt(int x, int y)
+        {
+            return this._surfaceGrid[x, y];
         }
 
         Vector2 IMapService.PlayerLoc
@@ -119,9 +150,5 @@ namespace ActionRPG
             get { return this.PlayerLoc; }
         }
 
-        IMapFeature[] IMapService.GetBoundedSet(Rectangle bounds)
-        {
-            return this.GetBoundedSet(bounds);
-        }
     }
 }

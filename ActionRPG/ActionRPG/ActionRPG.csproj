@@ -110,7 +110,7 @@
     <Compile Include="ActorDrawComponent.cs" />
     <Compile Include="AreaMapComponent.cs" />
     <Compile Include="CameraComponent.cs" />
-    <Compile Include="MapFeatures.cs" />
+    <Compile Include="MapTiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

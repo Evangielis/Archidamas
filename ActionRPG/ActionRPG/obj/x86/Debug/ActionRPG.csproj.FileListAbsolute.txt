@@ -8,4 +8,5 @@ C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archi
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Archidamas.exe
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Archidamas.pdb
 C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\Grass.xnb
-C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\Mountain.xnb
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\CaveEntrance.xnb
+C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\MountainWall.xnb

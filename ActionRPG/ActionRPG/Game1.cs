@@ -62,11 +62,15 @@ namespace ActionRPG
             worldDraw.Batch = spriteBatch;
             actorDraw.Batch = spriteBatch;
 
-            List<IMapFeature> objs = new List<IMapFeature>();
-            objs.Add(new EntryPoint(0, 0));
-            objs.Add(new Mountain(48, 48));
+            List<IMapTile> objs = new List<IMapTile>();
+            objs.Add(new EntryPointTile(50, 50));
+            objs.Add(new MountainWallTile(48, 48));
+            objs.Add(new MountainWallTile(49, 48));
+            objs.Add(new CaveEntranceTile(50, 48));
+            objs.Add(new MountainWallTile(51, 48));
+            objs.Add(new MountainWallTile(52, 48));
             area.LoadMap(objs.ToArray());
-        }
+        } 
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload

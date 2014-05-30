@@ -56,8 +56,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mountain.png">
-      <Name>Mountain</Name>
+    <Compile Include="CaveEntrance.png">
+      <Name>CaveEntrance</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MountainWall.png">
+      <Name>MountainWall</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -32,7 +32,8 @@ namespace ActionRPG
         protected override void LoadContent()
         {
             this._textureBank.Add("Grass", Game.Content.Load<Texture2D>("Grass"));
-            this._textureBank.Add("Mountain", Game.Content.Load<Texture2D>("Mountain"));
+            this._textureBank.Add("MountainWall", Game.Content.Load<Texture2D>("MountainWall"));
+            this._textureBank.Add("CaveEntrance", Game.Content.Load<Texture2D>("CaveEntrance"));
             base.LoadContent();
         }
 
@@ -50,27 +51,38 @@ namespace ActionRPG
 
         public void DrawWorldToBatch(SpriteBatch batch)
         {
-            this.GenerateBackground(batch);
+            //this.GenerateBackground(batch);
             this.GenerateMap(batch);
         }
 
         private void GenerateMap(SpriteBatch batch)
         {
-            IMapFeature[] m = this.MapService.GetBoundedSet(Rectangle.Empty);
-            foreach (IMapFeature f in m)
+            for (int i = -15; i < 16; i++)
             {
-                MapDrawFeature(batch, f);
+                for (int j = -10; j < 11; j++)
+                {
+                    MapDrawTile(batch, this.MapService.GetSurfaceAt((int)this.Center.X/32 - i, (int)this.Center.Y/32 - j));
+                    MapDrawTile(batch, this.MapService.GetFeatureAt((int)this.Center.X/32 - i,(int)this.Center.Y/32 - j));
+                }
             }
         }
-        private void MapDrawFeature(SpriteBatch batch, IMapFeature feature)
+        private void MapDrawTile(SpriteBatch batch, IMapTile feature)
         {
-            switch (feature.Type)
+            switch (feature.Name)
             {
-                case EnumMapObjType.Empty:
+                case "":
                     break;
 
-                case EnumMapObjType.Terrain:
-                    batch.Draw(this._textureBank[feature.Name],feature.Area,Color.White);
+                case "Cave Entrance":
+                    batch.Draw(this._textureBank["CaveEntrance"],feature.Area,Color.White);
+                    break;
+
+                case "Mountain Wall":
+                    batch.Draw(this._textureBank["MountainWall"], feature.Area, Color.White);
+                    break;
+
+                case "Grass":
+                    batch.Draw(this._textureBank["Grass"], feature.Area, Color.White);
                     break;
             }
         }
