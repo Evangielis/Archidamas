@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Archidamas;
 
 namespace ActionRPG
 {
@@ -22,6 +23,7 @@ namespace ActionRPG
         ActorDrawComponent actorDraw;
         AreaMapComponent area;
         CameraComponent camera;
+        ControlComponent control;
 
         public Game1()
         {
@@ -31,6 +33,7 @@ namespace ActionRPG
             actorDraw = new ActorDrawComponent(this);
             area = new AreaMapComponent(this);
             camera = new CameraComponent(this);
+            control = new ControlComponent(this);
         }
 
         /// <summary>

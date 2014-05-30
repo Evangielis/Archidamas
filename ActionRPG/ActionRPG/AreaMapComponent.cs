@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Archidamas;
+using Archidamas.Extensions;
+using Microsoft.Xna.Framework.Input;
 
 namespace ActionRPG
 {
@@ -12,28 +15,71 @@ namespace ActionRPG
         Terrain,
     };
 
-    interface IMapFeature
+    interface IMapService
     {
-        EnumMapObjType Type { get; }
-        bool Passable { get; }
-        Rectangle Area { get; }
-        string Name { get; }
+        Vector2 PlayerLoc { get; }
+        IMapFeature GetObjAt(int x, int y);
+        IMapFeature[] GetBoundedSet(Rectangle bounds);
     }
 
-    class AreaMapComponent : GameComponent, IMap
+    class AreaMapComponent : GameComponent, IMapService
     {
+        const float MOVE_SPEED = 2.0F;
+
         List<IMapFeature> _mapObjs;
-        Point PlayerLoc { get; set; }
+        Vector2 _playerLoc;
+        Vector2 PlayerLoc 
+        {
+            get { return _playerLoc; }
+        }
+        IKeyService KeyService { get; set; }
 
         public AreaMapComponent(Game game) : base(game)
         {
             game.Components.Add(this);
-            game.Services.AddService(typeof(IMap),this);
+            game.Services.AddService(typeof(IMapService),this);
         }
 
         public override void Initialize()
         {
+            KeyService = (IKeyService)Game.Services.GetService(typeof(IKeyService));
             base.Initialize();
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            this.CheckPlayerMovement();
+            base.Update(gameTime);
+        }
+
+        public void CheckPlayerMovement()
+        {
+            Vector2 _proposedLoc = PlayerLoc.Clone();
+
+            foreach (Keys k in this.KeyService.PressedKeys)
+            {
+                switch (k)
+                {
+                    case Keys.W: _proposedLoc.Y -= MOVE_SPEED; break;
+                    case Keys.A: _proposedLoc.X -= MOVE_SPEED; break;
+                    case Keys.S: _proposedLoc.Y += MOVE_SPEED; break;
+                    case Keys.D: _proposedLoc.X += MOVE_SPEED; break;
+                    default: break;
+                }
+            }
+
+            Rectangle player = new Rectangle((int)_proposedLoc.X,(int)_proposedLoc.Y,32,32);
+            _playerLoc = (this.CheckCollision(player)) ? _playerLoc : _proposedLoc;
+        }
+
+        public bool CheckCollision(Rectangle collider)
+        {
+            foreach (IMapFeature f in _mapObjs)
+            {
+                if (f.Area.Intersects(collider))
+                    return true;
+            }
+            return false;
         }
 
         public void LoadMap(IMapFeature[] objs)
@@ -42,11 +88,11 @@ namespace ActionRPG
 
             //Identify and process entry point
             IMapFeature p = this._mapObjs.Find(s => s.Name == "EntryPoint");
-            this.PlayerLoc = p.Area.Location;
+            this._playerLoc = p.Area.Location.ToVector2();
             this._mapObjs.Remove(p);
         }
-        //private void RegisterMapObj(IMapObj o) { _mapBlocks[o.Loc.X, o.Loc.Y] = o; }
 
+        //SERVICE IMPLEMENTATION
         IMapFeature GetObjAt(int x, int y) 
         {
             return this._mapObjs.Find(s => s.Area.Contains(x,y));
@@ -62,17 +108,17 @@ namespace ActionRPG
 
 
         //IMap implementation
-        IMapFeature IMap.GetObjAt(int x, int y)
+        IMapFeature IMapService.GetObjAt(int x, int y)
         {
             return this.GetObjAt(x, y);
         }
 
-        Point IMap.PlayerLoc
+        Vector2 IMapService.PlayerLoc
         {
             get { return this.PlayerLoc; }
         }
 
-        IMapFeature[] IMap.GetBoundedSet(Rectangle bounds)
+        IMapFeature[] IMapService.GetBoundedSet(Rectangle bounds)
         {
             return this.GetBoundedSet(bounds);
         }

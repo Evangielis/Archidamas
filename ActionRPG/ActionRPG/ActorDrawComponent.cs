@@ -12,7 +12,7 @@ namespace ActionRPG
     {
         private Texture2D PCTxr { get; set; }
         public SpriteBatch Batch { get; set; }
-        IMap Map { get; set; }
+        IMapService MapService { get; set; }
 
         public ActorDrawComponent(Game game) : base(game)
         { 
@@ -21,7 +21,7 @@ namespace ActionRPG
 
         public override void Initialize()
         {
-            this.Map = (IMap)Game.Services.GetService(typeof(IMap));
+            this.MapService = (IMapService)Game.Services.GetService(typeof(IMapService));
             base.Initialize();
         }
 
@@ -45,7 +45,7 @@ namespace ActionRPG
         private void DrawPlayer(SpriteBatch batch)
         {
             batch.Draw(this.PCTxr, 
-                this.Map.PlayerLoc.ToVector2(), 
+                this.MapService.PlayerLoc, 
                 Color.White);
         }
     }

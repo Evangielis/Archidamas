@@ -6,6 +6,14 @@ using Microsoft.Xna.Framework;
 
 namespace ActionRPG
 {
+    interface IMapFeature
+    {
+        EnumMapObjType Type { get; }
+        bool Passable { get; }
+        Rectangle Area { get; }
+        string Name { get; }
+    }
+
     class EntryPoint : IMapFeature
     {
         const string NAME = "EntryPoint";

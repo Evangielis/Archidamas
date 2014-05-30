@@ -14,10 +14,10 @@ namespace ActionRPG
             get
             {
                 return _baseTranslationMatrix
-                    * Matrix.CreateTranslation(Map.PlayerLoc.X-16, Map.PlayerLoc.Y-16, 0);
+                    * Matrix.CreateTranslation((-1 * MapService.PlayerLoc.X) - 16, (-1 * MapService.PlayerLoc.Y) - 16, 0);
             }
         }
-        IMap Map { get; set; }
+        IMapService MapService { get; set; }
 
         public CameraComponent(Game game)
             : base(game)
@@ -31,7 +31,7 @@ namespace ActionRPG
                 (Game.GraphicsDevice.Viewport.Width/2),
                 (Game.GraphicsDevice.Viewport.Height/2),
                 0);
-            this.Map = (IMap)Game.Services.GetService(typeof(IMap));
+            this.MapService = (IMapService)Game.Services.GetService(typeof(IMapService));
             base.Initialize();
         }
 
