@@ -8,9 +8,20 @@ namespace Archidamas.Extensions
 {
     public static class PointExt
     {
-        public static Vector2 ToVector2(this Point point)
+        /// <summary>
+        /// Translates the point to a 2d vector times a factor X.
+        /// </summary>
+        /// <param name="point">The point to translate.</param>
+        /// <param name="factor">Optional factor to multiply ints by.</param>
+        /// <returns>Vector2</returns>
+        public static Vector2 ToVector2(this Point point, float factor = 1)
         {
-            return new Vector2(point.X, point.Y);
+            return new Vector2(factor * point.X, factor * point.Y);
+        }
+
+        public static Point Clone(this Point point)
+        {
+            return new Point(point.X, point.Y);
         }
     }
 }

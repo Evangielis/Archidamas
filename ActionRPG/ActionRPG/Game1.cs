@@ -20,20 +20,26 @@ namespace ActionRPG
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         WorldDrawComponent worldDraw;
-        ActorDrawComponent actorDraw;
+        FlowControlComponent flow;
         AreaMapComponent area;
         CameraComponent camera;
         ControlComponent control;
+        PlayerComponent player;
+        ObjectManagerComponent objects;
+        ActionManagerComponent actions;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            objects = new ObjectManagerComponent(this);
             worldDraw = new WorldDrawComponent(this);
-            actorDraw = new ActorDrawComponent(this);
+            flow = new FlowControlComponent(this);
             area = new AreaMapComponent(this);
             camera = new CameraComponent(this);
             control = new ControlComponent(this);
+            player = new PlayerComponent(this);
+            actions = new ActionManagerComponent(this);
         }
 
         /// <summary>
@@ -60,7 +66,7 @@ namespace ActionRPG
 
             // TODO: use this.Content to load your game content here
             worldDraw.Batch = spriteBatch;
-            actorDraw.Batch = spriteBatch;
+            //actorDraw.Batch = spriteBatch;
 
             List<IMapTile> objs = new List<IMapTile>();
             objs.Add(new EntryPointTile(50, 50));
@@ -70,6 +76,9 @@ namespace ActionRPG
             objs.Add(new MountainWallTile(51, 48));
             objs.Add(new MountainWallTile(52, 48));
             area.LoadMap(objs.ToArray());
+
+            objects.AllocAvatar();
+            (area as IMapService).PlaceAvatar(objects.FetchAvatar());
         } 
 
         /// <summary>
@@ -105,7 +114,7 @@ namespace ActionRPG
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Deferred,
+            spriteBatch.Begin(SpriteSortMode.BackToFront,
                 null, null, null, null, null, camera.TranslationMatrix);
             base.Draw(gameTime);
             spriteBatch.End();

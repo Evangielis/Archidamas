@@ -34,9 +34,6 @@ namespace ActionRPG
 
     abstract class MapTile : IMapTile
     {
-        const int WIDTH = 32;
-        const int HEIGHT = 32;
-
         protected string Name { get; set; }
         protected EnumMapObjType Type { get; set; }
         protected Point Loc { get; set; }
@@ -55,7 +52,7 @@ namespace ActionRPG
         public MapTile(int x, int y) : this()
         {
             this.Loc = new Point(x, y);
-            this.Area = new Rectangle(x*WIDTH, y*HEIGHT, WIDTH, HEIGHT);
+            this.Area = new Rectangle(x, y,1,1);
         }
 
         protected bool FlagTest(FlagsMapFeature f)
