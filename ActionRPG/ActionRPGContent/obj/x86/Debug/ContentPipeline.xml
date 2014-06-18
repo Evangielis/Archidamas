@@ -37,6 +37,15 @@
       <Output>C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\MountainWall.xnb</Output>
       <Time>2014-05-30T14:56:13.9375-04:00</Time>
     </Item>
+    <Item>
+      <Source>Avatar.png</Source>
+      <Name>Avatar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Lee.HAL\my documents\visual studio 2010\Projects\Archidamas\ActionRPG\ActionRPG\bin\x86\Debug\Content\Avatar.xnb</Output>
+      <Time>2014-06-11T21:55:58.265625-04:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

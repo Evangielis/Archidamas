@@ -45,19 +45,19 @@ namespace ActionRPG
                 {
                     case Keys.W: 
                         this.Avatar.Facing = EnumMapDirection.North;
-                        this.Avatar.Action = EnumActorAction.AttackMove;
+                        this.Avatar.Action = EnumActorAction.Move;
                         break;
                     case Keys.A:
                         this.Avatar.Facing = EnumMapDirection.West;
-                        this.Avatar.Action = EnumActorAction.AttackMove;
+                        this.Avatar.Action = EnumActorAction.Move;
                         break;
                     case Keys.S:
                         this.Avatar.Facing = EnumMapDirection.South;
-                        this.Avatar.Action = EnumActorAction.AttackMove;
+                        this.Avatar.Action = EnumActorAction.Move;
                         break;
                     case Keys.D:
                         this.Avatar.Facing = EnumMapDirection.East;
-                        this.Avatar.Action = EnumActorAction.AttackMove;
+                        this.Avatar.Action = EnumActorAction.Move;
                         break;
                     default: 
                         break;

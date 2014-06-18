@@ -48,7 +48,7 @@ namespace ActionRPG
             this._textureBank.Add("Grass", Game.Content.Load<Texture2D>("Grass"));
             this._textureBank.Add("MountainWall", Game.Content.Load<Texture2D>("MountainWall"));
             this._textureBank.Add("CaveEntrance", Game.Content.Load<Texture2D>("CaveEntrance"));
-            this._textureBank.Add("PlayerAvatar", Game.Content.Load<Texture2D>("knt1_fr1"));
+            this._textureBank.Add("PlayerAvatar", Game.Content.Load<Texture2D>("Avatar"));
             base.LoadContent();
         }
 
@@ -98,19 +98,19 @@ namespace ActionRPG
                 case "Cave Entrance":
                     batch.Draw(this._textureBank["CaveEntrance"],
                         feature.Loc.ToVector2(this.MapService.GridSize),
-                        null,Color.White,0F,Vector2.Zero,1F,SpriteEffects.None,DRAW_LAYER[1]);
+                        null,Color.White,0F,Vector2.Zero,1F,SpriteEffects.None,DRAW_LAYER[9]);
                     break;
 
                 case "Mountain Wall":
                     batch.Draw(this._textureBank["MountainWall"],
                         feature.Loc.ToVector2(this.MapService.GridSize),
-                        null, Color.White, 0F, Vector2.Zero, 1F, SpriteEffects.None, DRAW_LAYER[1]);
+                        null, Color.White, 0F, Vector2.Zero, 1F, SpriteEffects.None, DRAW_LAYER[9]);
                     break;
 
                 case "Grass":
                     batch.Draw(this._textureBank["Grass"],
                         feature.Loc.ToVector2(this.MapService.GridSize),
-                        null, Color.White, 0F, Vector2.Zero, 1F, SpriteEffects.None, DRAW_LAYER[0]);
+                        null, Color.White, 0F, Vector2.Zero, 1F, SpriteEffects.None, DRAW_LAYER[10]);
                     break;
             }
         }
@@ -120,9 +120,12 @@ namespace ActionRPG
             switch (actor.Name)
             {
                 case "PlayerAvatar":
+                    Rectangle source = new Rectangle(0,0,32,32);
+                    source.Offset((int)actor.Facing * 32, 0);
+
                     batch.Draw(this._textureBank["PlayerAvatar"],
                         actor.Loc.ToVector2(this.MapService.GridSize),
-                        null, Color.White, 0F, Vector2.Zero, 1F, SpriteEffects.None, DRAW_LAYER[2]);
+                        source, Color.White, 0F, Vector2.Zero, 1F, SpriteEffects.None, DRAW_LAYER[8]);
                     break;
             }
         }

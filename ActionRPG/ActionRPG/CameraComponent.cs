@@ -8,16 +8,20 @@ namespace ActionRPG
 {
     class CameraComponent : GameComponent
     {
-        Matrix _baseTranslationMatrix;
+        float ZoomLevel { get; set; }
+        
         public Matrix TranslationMatrix 
         {
             get
             {
-                return _baseTranslationMatrix
-                    * Matrix.CreateTranslation((-1 * this.ObjService.FetchAvatar().Loc.X * this.MapService.GridSize) - 16,
-                    (-1 * this.ObjService.FetchAvatar().Loc.Y * this.MapService.GridSize) - 16, 0);
+                return Matrix.CreateTranslation(new Vector3(-1 * this.ObjService.FetchAvatar().Loc.X, -1 * this.ObjService.FetchAvatar().Loc.Y, 0))
+                    * Matrix.CreateTranslation(new Vector3(-16, -16, 0))
+                    * Matrix.CreateRotationZ(0F)
+                    * Matrix.CreateScale(new Vector3(this.ZoomLevel, this.ZoomLevel, 1F))
+                    * Matrix.CreateTranslation(new Vector3(Game.GraphicsDevice.Viewport.Width * 0.5F, Game.GraphicsDevice.Viewport.Height * 0.5F, 0));
             }
         }
+
         IObjectService ObjService { get; set; }
         IMapService MapService { get; set; }
 
@@ -29,12 +33,9 @@ namespace ActionRPG
 
         public override void Initialize()
         {
-            this._baseTranslationMatrix = Matrix.CreateTranslation(
-                (Game.GraphicsDevice.Viewport.Width/2),
-                (Game.GraphicsDevice.Viewport.Height/2),
-                0);
             this.ObjService = (IObjectService)Game.Services.GetService(typeof(IObjectService));
             this.MapService = (IMapService)Game.Services.GetService(typeof(IMapService));
+            this.ZoomLevel = 1.5F;
             base.Initialize();
         }
 

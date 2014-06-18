@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Archidamas.Extensions;
 
 namespace ActionRPG
 {
@@ -15,10 +16,13 @@ namespace ActionRPG
 
     interface IMapTile
     {
-        EnumMapObjType Type { get; }
-        Point Loc { get; }
-        Rectangle Area { get; }
         string Name { get; }
+        EnumMapObjType Type { get; }
+        
+        Vector2 Loc { get; }
+        Rectangle Area { get; }
+        void SetLoc(Vector2 loc);
+
         bool Impassable { get; }
         bool Collidable { get; }
         bool Triggered { get; }
@@ -36,8 +40,8 @@ namespace ActionRPG
     {
         protected string Name { get; set; }
         protected EnumMapObjType Type { get; set; }
-        protected Point Loc { get; set; }
-        protected Rectangle Area { get; set; }
+        private Vector2 Loc { get; set; }
+        private Rectangle Area { get; set; }
         protected FlagsMapFeature _featureFlags;
 
         //Constructors
@@ -45,14 +49,20 @@ namespace ActionRPG
         {
             this.Name = String.Empty;
             this.Type = EnumMapObjType.Empty;
-            this.Loc = Point.Zero;
+            this.Loc = Vector2.Zero;
             this.Area = Rectangle.Empty;
             this._featureFlags = 0;
         }
-        public MapTile(int x, int y) : this()
+        public MapTile(float x, float y) : this()
         {
-            this.Loc = new Point(x, y);
-            this.Area = new Rectangle(x, y,1,1);
+            this.Loc = new Vector2(x,y);
+            this.Area = RectangleExt.FromVector2(this.Loc, 32, 32);
+        }
+
+        protected virtual void SetLoc(Vector2 loc)
+        {
+            this.Loc = loc;
+            this.Area.SetLocFromVector2(loc);
         }
 
         protected bool FlagTest(FlagsMapFeature f)
@@ -66,7 +76,7 @@ namespace ActionRPG
 
         //IMapFeature implementation
         EnumMapObjType IMapTile.Type { get { return this.Type; } }
-        Point IMapTile.Loc { get { return this.Loc; } }
+        Vector2 IMapTile.Loc { get { return this.Loc; } }
         Rectangle IMapTile.Area { get { return this.Area; } }
         string IMapTile.Name { get { return this.Name; } }
         bool IMapTile.Impassable { get { return this.FlagTest(FlagsMapFeature.Impassable); } }
@@ -75,7 +85,12 @@ namespace ActionRPG
             get { return this.FlagTest(FlagsMapFeature.Impassable | FlagsMapFeature.Triggered); }
         }
         bool IMapTile.Triggered { get { return this.FlagTest(FlagsMapFeature.Triggered); } }
-}
+
+        void IMapTile.SetLoc(Vector2 loc)
+        {
+            this.SetLoc(loc);
+        }
+    }
 
     //TILES
     #region Surface Tiles

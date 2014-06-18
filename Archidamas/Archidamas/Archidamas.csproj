@@ -107,7 +107,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraComponent.cs" />
     <Compile Include="ControlComponent.cs" />
+    <Compile Include="Extensions\GraphicsExt.cs" />
     <Compile Include="Extensions\PointExt.cs" />
     <Compile Include="Extensions\RectangleExt.cs" />
     <Compile Include="Extensions\Texture2DExt.cs" />

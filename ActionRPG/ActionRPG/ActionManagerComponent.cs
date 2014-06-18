@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace ActionRPG
 {
-    enum EnumActorAction { Idle, Wait, AttackMove };
+    enum EnumActorAction { Idle, Wait, Move };
 
     //Not currently used
     interface IActionService
@@ -85,31 +85,13 @@ namespace ActionRPG
             switch (actor.Action)
             {
                 case EnumActorAction.Idle: break;
-                case EnumActorAction.AttackMove: AttackMoveAction(actor); break;
+                case EnumActorAction.Move: MoveAction(actor); break;
             }
             actor.Unready();
         }
 
-        void AttackMoveAction(IActor actor)
+        void MoveAction(IActor actor)
         {
-            //Get target grid square
-            Point target = this.MapService.GetPointFrom(actor.Loc, actor.Facing, 1);
-            if (actor.Loc == target) return;
-
-            if (this.MapService.IsActorAt(target.X, target.Y))
-                this.AttackAction(actor, this.MapService.GetActorAt(target.X, target.Y));
-            else
-                this.MoveAction(actor, target);
-            
-        }
-        void AttackAction(IActor actor, IActor target)
-        {
-            throw new NotImplementedException();
-        }
-        void MoveAction(IActor actor, Point target)
-        {
-            if (!this.MapService.GetFeatureAt(target.X, target.Y).Impassable)
-                this.MapService.PlaceActor(actor, target);
         }
     }
 }

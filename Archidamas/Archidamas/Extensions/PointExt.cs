@@ -23,5 +23,10 @@ namespace Archidamas.Extensions
         {
             return new Point(point.X, point.Y);
         }
+
+        public static Point PointFromVector2(Vector2 vector, float factor = 1F)
+        {
+            return new Point((int)(vector.X * factor), (int)(vector.Y * factor));
+        }
     }
 }
