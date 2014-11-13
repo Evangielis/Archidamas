@@ -53,6 +53,11 @@ namespace Archidamas
             base.Update(gameTime);
         }
 
+        void SetCenter(int x, int y)
+        {
+            this.Center = new Vector2(x, y);
+        }
+
         float ICameraService.Zoom
         {
             get
@@ -96,7 +101,7 @@ namespace Archidamas
 
         void ICameraService.SetCenter(int x, int y)
         {
-            this.Center = new Vector2(x, y);
+            this.SetCenter(x, y);
         }
         void ICameraService.SetCenter(Vector2 v)
         {
