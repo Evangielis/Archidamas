@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework;
 
 namespace Archidamas
 {
+    /// <summary>
+    /// This interface provides basic camera services for use in drawing.
+    /// </summary>
     public interface ICameraService
     {
         float Zoom { get; set; }
@@ -16,6 +19,9 @@ namespace Archidamas
         void SetCenter(Vector2 v);
     }
 
+    /// <summary>
+    /// The camera component underlying the ICameraService service.
+    /// </summary>
     public class CameraComponent : GameComponent, ICameraService
     {
         float ZoomLevel { get; set; }

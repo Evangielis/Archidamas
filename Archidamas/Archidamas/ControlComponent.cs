@@ -7,12 +7,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Archidamas
 {
+    /// <summary>
+    /// This interface provides keyboard interface services.
+    /// </summary>
     public interface IKeyService
     {
         Keys[] PressedKeys { get; }
         Dictionary<Keys,bool> KeyStatus { get; }
     }
 
+    /// <summary>
+    /// This component serves all countrol based interfaces
+    /// </summary>
     public class ControlComponent : GameComponent, IKeyService
     {
         Keys[] PressedKeys { get; set; }

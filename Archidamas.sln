@@ -5,14 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archidamas", "Archidamas\Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchidamasContent", "Archidamas\ArchidamasContent\ArchidamasContent.contentproj", "{603F5721-2FB4-434B-B177-8CC208226B15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionRPG", "ActionRPG\ActionRPG\ActionRPG.csproj", "{2159FB5E-F866-41AE-BAAB-860CC42FFF7C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionRPGContent", "ActionRPG\ActionRPGContent\ActionRPGContent.contentproj", "{B5C5E73D-B80F-4BF7-A936-E09C080F533A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardSim", "CardSim\CardSim\CardSim.csproj", "{71A52858-F4AF-471B-91FC-E77C886BC6F1}"
-EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "CardSimContent", "CardSim\CardSimContent\CardSimContent.contentproj", "{EAB9CA82-1FEF-456A-B5B7-FBD961792AC0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -25,18 +17,6 @@ Global
 		{63DC39A6-2199-4834-AB54-93AEAEC7AF89}.Release|x86.Build.0 = Release|x86
 		{603F5721-2FB4-434B-B177-8CC208226B15}.Debug|x86.ActiveCfg = Debug|x86
 		{603F5721-2FB4-434B-B177-8CC208226B15}.Release|x86.ActiveCfg = Release|x86
-		{2159FB5E-F866-41AE-BAAB-860CC42FFF7C}.Debug|x86.ActiveCfg = Debug|x86
-		{2159FB5E-F866-41AE-BAAB-860CC42FFF7C}.Debug|x86.Build.0 = Debug|x86
-		{2159FB5E-F866-41AE-BAAB-860CC42FFF7C}.Release|x86.ActiveCfg = Release|x86
-		{2159FB5E-F866-41AE-BAAB-860CC42FFF7C}.Release|x86.Build.0 = Release|x86
-		{B5C5E73D-B80F-4BF7-A936-E09C080F533A}.Debug|x86.ActiveCfg = Debug|x86
-		{B5C5E73D-B80F-4BF7-A936-E09C080F533A}.Release|x86.ActiveCfg = Release|x86
-		{71A52858-F4AF-471B-91FC-E77C886BC6F1}.Debug|x86.ActiveCfg = Debug|x86
-		{71A52858-F4AF-471B-91FC-E77C886BC6F1}.Debug|x86.Build.0 = Debug|x86
-		{71A52858-F4AF-471B-91FC-E77C886BC6F1}.Release|x86.ActiveCfg = Release|x86
-		{71A52858-F4AF-471B-91FC-E77C886BC6F1}.Release|x86.Build.0 = Release|x86
-		{EAB9CA82-1FEF-456A-B5B7-FBD961792AC0}.Debug|x86.ActiveCfg = Debug|x86
-		{EAB9CA82-1FEF-456A-B5B7-FBD961792AC0}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

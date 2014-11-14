@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraComponent.cs" />
+    <Compile Include="CollisionComponent.cs" />
     <Compile Include="ControlComponent.cs" />
     <Compile Include="Extensions\GraphicsExt.cs" />
     <Compile Include="Extensions\PointExt.cs" />
