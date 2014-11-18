@@ -1,0 +1,10 @@
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\bin\x86\Debug\Content\Actor.xnb
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\bin\x86\Debug\RTS.exe
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\bin\x86\Debug\RTS.pdb
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\bin\x86\Debug\Archidamas.exe
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\bin\x86\Debug\Archidamas.pdb
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\obj\x86\Debug\RTS.exe
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\obj\x86\Debug\RTS.pdb
+C:\Documents and Settings\Lee.HAL\My Documents\Visual Studio 2010\Projects\Archidamas\RTS\RTS\bin\x86\Debug\Content\ActorPlaceholder.xnb

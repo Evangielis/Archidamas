@@ -1,0 +1,2 @@
+Content\Actor.xnb
+Content\ActorPlaceholder.xnb
