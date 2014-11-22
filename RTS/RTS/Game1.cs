@@ -28,6 +28,7 @@ namespace RTS
         Actor actorObj;
 
         ICameraService cameraService;
+        IControlService controlService;
 
         public Game1()
         {
@@ -40,7 +41,8 @@ namespace RTS
             
             actorObj = new Actor();
 
-            cameraService = camera;
+            cameraService = (ICameraService)this.Services.GetService(typeof(ICameraService));
+            controlService = (IControlService)this.Services.GetService(typeof(IControlService));
         }
 
         /// <summary>

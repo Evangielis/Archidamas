@@ -8,75 +8,91 @@ using Microsoft.Xna.Framework.Input;
 namespace Archidamas
 {
     /// <summary>
-    /// This interface provides keyboard interface services.
+    /// Provides more advanced control interface services which allow
+    /// the programmer to define control channels which it is interested
+    /// in.  Is overall more modular and trades processor time for stable 
+    /// heap space.
     /// </summary>
-    public interface IKeyService
+    public interface IControlService
     {
         Keys[] PressedKeys { get; }
-        Dictionary<Keys,bool> KeyStatus { get; }
+        bool isKeyDown(Keys key);
+        bool isButtonDown(Buttons button);
+    }
+
+    /// <summary>
+    /// Defines a Control Channel which the control service
+    /// can publish events to.  Each channel takes a delegate
+    /// which is used to check its status.  If the channel is Active
+    /// then its conditions have been met this update.  If the channel 
+    /// is Live then it is being checked by the control service.
+    /// </summary>
+    public class ControlChannel
+    {
+        /// <summary>
+        /// Delegate used to set the active status of the control channel.
+        /// </summary>
+        /// <param name="control">The checking control service</param>
+        /// <returns>True if event is active, false if not</returns>
+        delegate bool ControlEvent(IControlService control);
+
+        string Name { get; set; }
+        bool Active { get; set; }
+        bool Live { get; set; }
+        ControlEvent ActivityCheck { get; set; }        
+
+        public ControlChannel(string name, ControlEvent del)
+        {
+            this.Name = name;
+            this.Active = this.Live = false;
+            this.ActivityCheck = del;
+        }
     }
 
     /// <summary>
     /// This component serves all countrol based interfaces
     /// </summary>
-    public class ControlComponent : GameComponent, IKeyService
+    public class ControlComponent : GameComponent, IControlService
     {
-        Keys[] PressedKeys { get; set; }
-        Dictionary<Keys, bool> _keyStatus;
-        Dictionary<Keys, TimeSpan> _keyPresses;
+        //Channels
+        List<ControlChannel> _controlChannels;
+
+        //Mouse
+        MouseState _currentMouse;
+        MouseState _prevMouse;
+        //Kb
+        KeyboardState _currentKb;
+        KeyboardState _prevKb;
 
         public ControlComponent(Game game) : base(game)
         {
             game.Components.Add(this);
-            game.Services.AddService(typeof(IKeyService), this);
+            game.Services.AddService(typeof(IControlService), this);
+
+            this._controlChannels = new List<ControlChannel>();
         }
 
         public override void Initialize()
         {
-            this.PressedKeys = new Keys[0];
-            this._keyStatus = new Dictionary<Keys, bool>();
-            this._keyPresses = new Dictionary<Keys, TimeSpan>();
-
-            //Initialize _keyPresses
-            foreach (Keys k in Enum.GetValues(typeof(Keys)).Cast<Keys>())
-            {
-                this._keyStatus[k] = false;
-                this._keyPresses[k] = TimeSpan.Zero;
-            }
+            this._currentMouse = this._prevMouse = Mouse.GetState();
+            this._currentKb = this._prevKb = Keyboard.GetState();
 
             base.Initialize();
         }
 
         public override void Update(GameTime gameTime)
         {
-            //Operate on all all previously set keys
-            foreach (Keys k in this.PressedKeys)
-            {
-                this._keyStatus[k] = false;
-            }
+            //Kb updates
+            this._prevKb = this._currentKb;
+            this._currentKb = Keyboard.GetState();
 
-            this.PressedKeys = Keyboard.GetState().GetPressedKeys();
-
-            //Operate on each currently pressed key
-            foreach (Keys k in this.PressedKeys)
-            {
-                //if (this._keyPresses[k].Equals(TimeSpan.Zero))
-                 //   this._keyPresses[k] = gameTime.TotalGameTime;
-                this._keyStatus[k] = true;
-            }
+            //Mouse updates
+            this._prevMouse = this._currentMouse;
+            this._currentMouse = Mouse.GetState();
 
             base.Update(gameTime);
         }
 
-
         //Service interface implementations
-        Keys[] IKeyService.PressedKeys
-        {
-            get { return this.PressedKeys; }
-        }
-        Dictionary<Keys, bool> IKeyService.KeyStatus
-        {
-            get { return this._keyStatus; }
-        }
     }
 }
